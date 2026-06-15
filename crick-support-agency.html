@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Crick Support Agency | Premium Digital Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #050e1a;
+    --bg2:       #0a1828;
+    --accent:    #00e5ff;
+    --accent2:   #0077ff;
+    --gold:      #f5c842;
+    --text:      #e8f0fe;
+    --muted:     #7a93b0;
+    --card:      #0d1f35;
+    --border:    rgba(0,229,255,0.12);
+    --radius:    14px;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); overflow-x: hidden; }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 999;
+    background: rgba(5,14,26,0.92); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-head); font-weight: 800; font-size: 1.3rem;
+    color: var(--text); text-decoration: none;
+  }
+  .logo-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 900; color: #fff;
+    letter-spacing: -1px;
+  }
+  .logo span { color: var(--accent); }
+
+  nav { display: flex; gap: 2rem; list-style: none; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color .2s; }
+  nav a:hover { color: var(--accent); }
+
+  .header-cta {
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    color: #fff; padding: 9px 22px; border-radius: 8px;
+    font-size: 0.88rem; font-weight: 600; text-decoration: none;
+    transition: opacity .2s;
+  }
+  .header-cta:hover { opacity: 0.85; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 120px 5% 80px;
+    background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(0,119,255,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(0,229,255,0.07) 0%, transparent 60%);
+    position: relative; overflow: hidden;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,229,255,0.08); border: 1px solid var(--border);
+    border-radius: 100px; padding: 6px 16px; font-size: 0.8rem;
+    color: var(--accent); font-weight: 600; margin-bottom: 1.4rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.6rem; animation: blink 1.5s infinite; }
+  @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+
+  h1 {
+    font-family: var(--font-head); font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 800; line-height: 1.1; margin-bottom: 1.2rem;
+  }
+  h1 .line2 { color: var(--accent); display: block; }
+  .hero-sub { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem; max-width: 480px; }
+
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    color: #fff; padding: 13px 28px; border-radius: 10px;
+    font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 0 24px rgba(0,229,255,0.2);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 32px rgba(0,229,255,0.35); }
+  .btn-outline {
+    border: 1px solid var(--border); color: var(--text); padding: 13px 28px; border-radius: 10px;
+    font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: border-color .2s, color .2s;
+    background: rgba(255,255,255,0.03);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Hero Visual */
+  .hero-visual {
+    position: relative; aspect-ratio: 1; max-width: 460px; justify-self: center;
+  }
+  .hero-orb {
+    width: 100%; height: 100%; border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--accent2), var(--accent), #7b2ff7, var(--accent2));
+    animation: spin 10s linear infinite; opacity: 0.15; filter: blur(60px);
+    position: absolute;
+  }
+  .hero-card {
+    position: absolute; background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.2rem 1.5rem;
+    backdrop-filter: blur(10px); font-size: 0.85rem;
+  }
+  .hero-card.c1 { top: 10%; left: 0; }
+  .hero-card.c2 { bottom: 20%; right: 0; }
+  .hero-card.c3 { top: 45%; left: 50%; transform: translateX(-50%); width: 180px; text-align: center; }
+  .hero-card .val { font-family: var(--font-head); font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+  .hero-card .lbl { color: var(--muted); font-size: 0.78rem; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── STATS ── */
+  .stats-bar {
+    background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 2.5rem 5%;
+  }
+  .stats-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; text-align: center; }
+  .stat-num { font-family: var(--font-head); font-size: 2.2rem; font-weight: 800; color: var(--accent); }
+  .stat-lbl { color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+
+  /* ── SECTION ── */
+  section { padding: 90px 5%; }
+  .section-max { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    display: inline-block; color: var(--accent); font-size: 0.78rem;
+    font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800; line-height: 1.2; margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--muted); max-width: 540px; line-height: 1.7; margin-bottom: 3rem; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg2); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1.2rem; }
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.5rem; }
+  .tech-tag {
+    background: rgba(0,229,255,0.07); border: 1px solid var(--border);
+    color: var(--accent); padding: 6px 16px; border-radius: 100px; font-size: 0.82rem; font-weight: 600;
+  }
+  .about-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .about-stat-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1.5rem; text-align: center;
+  }
+  .about-stat-card .val { font-family: var(--font-head); font-size: 2rem; font-weight: 800; color: var(--gold); }
+  .about-stat-card .lbl { color: var(--muted); font-size: 0.8rem; margin-top: 4px; }
+
+  /* ── SERVICES ── */
+  #services { background: var(--bg); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .service-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 2rem; transition: border-color .3s, transform .3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    transform: scaleX(0); transition: transform .3s; transform-origin: left;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-4px); }
+  .svc-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+  .svc-title { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.8rem; }
+  .svc-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { background: var(--bg2); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; transition: transform .3s;
+  }
+  .project-card:hover { transform: translateY(-4px); }
+  .project-thumb {
+    height: 190px; display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; position: relative;
+  }
+  .project-thumb.p1 { background: linear-gradient(135deg,#0d2b52,#0a4a8c); }
+  .project-thumb.p2 { background: linear-gradient(135deg,#0d3b2b,#0a6e52); }
+  .project-thumb.p3 { background: linear-gradient(135deg,#3b0d2b,#6e0a52); }
+  .project-body { padding: 1.4rem; }
+  .project-tag { font-size: 0.75rem; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  .project-title { font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; margin: 0.4rem 0 0.6rem; }
+  .project-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+
+  /* ── FAQ ── */
+  #faq { background: var(--bg); }
+  .faq-list { max-width: 780px; }
+  .faq-item {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    margin-bottom: 1rem; overflow: hidden;
+  }
+  .faq-q {
+    padding: 1.2rem 1.5rem; font-weight: 600; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background .2s;
+  }
+  .faq-q:hover { background: rgba(0,229,255,0.04); }
+  .faq-a { padding: 0 1.5rem 1.2rem; color: var(--muted); line-height: 1.75; font-size: 0.92rem; display: none; }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-q { color: var(--accent); }
+  .faq-arrow { transition: transform .3s; }
+  .faq-item.open .faq-arrow { transform: rotate(45deg); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--bg2); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-info p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 1rem 1.4rem; text-decoration: none; color: var(--text);
+    transition: border-color .2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-link .icon { font-size: 1.4rem; }
+  .form-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 2rem;
+  }
+  .form-group { margin-bottom: 1.2rem; }
+  label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+  input, textarea, select {
+    width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    border-radius: 8px; padding: 11px 14px; color: var(--text); font-family: var(--font-body);
+    font-size: 0.92rem; transition: border-color .2s; outline: none;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 110px; }
+  select option { background: var(--bg2); }
+  .submit-btn {
+    width: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent));
+    color: #fff; padding: 13px; border: none; border-radius: 10px;
+    font-size: 1rem; font-weight: 700; cursor: pointer; font-family: var(--font-head);
+    transition: opacity .2s, transform .2s;
+  }
+  .submit-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg); border-top: 1px solid var(--border);
+    padding: 60px 5% 30px;
+  }
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-brand p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; margin-top: 1rem; margin-bottom: 1.5rem; }
+  .footer-social { display: flex; gap: 10px; }
+  .social-btn {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: var(--card); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; color: var(--muted); font-size: 1rem;
+    transition: border-color .2s, color .2s;
+  }
+  .social-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .footer-col h4 { font-family: var(--font-head); font-weight: 700; font-size: 1rem; margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.7rem; }
+  .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color .2s; }
+  .footer-col ul li a:hover { color: var(--accent); }
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid var(--border); padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.85rem; color: var(--muted); flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom-links { display: flex; gap: 1.5rem; }
+  .footer-bottom-links a { color: var(--muted); text-decoration: none; }
+  .footer-bottom-links a:hover { color: var(--accent); }
+  .footer-name { font-family: var(--font-head); font-weight: 800; font-size: 1.4rem; }
+  .footer-name span { color: var(--accent); }
+
+  /* ── TICKER ── */
+  .ticker-wrap { background: linear-gradient(90deg, var(--accent2), var(--accent)); padding: 10px 0; overflow: hidden; }
+  .ticker { display: flex; gap: 3rem; white-space: nowrap; animation: ticker 20s linear infinite; }
+  .ticker-item { font-size: 0.82rem; font-weight: 600; color: #fff; opacity: 0.9; }
+  @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* ── HAMBURGER (mobile) ── */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width: 900px) {
+    nav, .header-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .stats-inner { grid-template-columns: repeat(2,1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .about-visual { grid-template-columns: repeat(4,1fr); }
+  }
+  @media(max-width: 560px) {
+    .stats-inner { grid-template-columns: repeat(2,1fr); }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .about-visual { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#home">
+    <div class="logo-icon">CS</div>
+    Crick Support <span>&nbsp;Agency</span>
+  </a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="#contact" class="header-cta">Start a Project</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker-wrap" style="margin-top:68px">
+  <div class="ticker">
+    <span class="ticker-item">🏏 Cricket Analytics</span>
+    <span class="ticker-item">📊 Data Solutions</span>
+    <span class="ticker-item">🌐 Web Development</span>
+    <span class="ticker-item">📱 Mobile Apps</span>
+    <span class="ticker-item">🚀 Digital Marketing</span>
+    <span class="ticker-item">💡 WhatsApp API</span>
+    <span class="ticker-item">🎯 Meta Ads</span>
+    <span class="ticker-item">🔍 Google Ads</span>
+    <span class="ticker-item">🏏 Cricket Analytics</span>
+    <span class="ticker-item">📊 Data Solutions</span>
+    <span class="ticker-item">🌐 Web Development</span>
+    <span class="ticker-item">📱 Mobile Apps</span>
+    <span class="ticker-item">🚀 Digital Marketing</span>
+    <span class="ticker-item">💡 WhatsApp API</span>
+    <span class="ticker-item">🎯 Meta Ads</span>
+    <span class="ticker-item">🔍 Google Ads</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge">🏏 Premium Digital Agency</div>
+      <h1>We engineer <span class="line2">digital excellence.</span></h1>
+      <p class="hero-sub">Transforming bold ideas into high-converting, state-of-the-art web experiences. Crick Support Agency builds the future of your brand.</p>
+      <div class="btn-group">
+        <a href="#portfolio" class="btn-primary">View Portfolio</a>
+        <a href="#contact" class="btn-outline">Start a Project</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-orb"></div>
+      <div class="hero-card c1">
+        <div class="val">500+</div>
+        <div class="lbl">Projects Delivered</div>
+      </div>
+      <div class="hero-card c3">
+        <div class="val">🏆</div>
+        <div class="lbl">Top Rated Agency</div>
+      </div>
+      <div class="hero-card c2">
+        <div class="val">300+</div>
+        <div class="lbl">Happy Clients</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div><div class="stat-num">3+</div><div class="stat-lbl">Years of Experience</div></div>
+    <div><div class="stat-num">300+</div><div class="stat-lbl">Clients Served</div></div>
+    <div><div class="stat-num">500+</div><div class="stat-lbl">Projects Completed</div></div>
+    <div><div class="stat-num">24h</div><div class="stat-lbl">Response Time</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-max">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="section-label">The Agency</span>
+        <h2>Who We Are</h2>
+        <p>We are a passionate team dedicated to crafting beautiful, functional, and user-centric digital solutions. Crick Support Agency specialises in the modern web stack, ensuring every project is lightning-fast, highly secure, and perfectly optimised to convert visitors into loyal clients.</p>
+        <p>Based in New Delhi, we combine deep technical expertise with creative vision to deliver digital experiences that truly stand out.</p>
+        <div class="tech-stack">
+          <span class="tech-tag">React.js</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">PHP</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">WordPress</span>
+          <span class="tech-tag">Shopify</span>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="about-stat-card"><div class="val">3+</div><div class="lbl">Years Exp.</div></div>
+        <div class="about-stat-card"><div class="val">300+</div><div class="lbl">Clients</div></div>
+        <div class="about-stat-card"><div class="val">500+</div><div class="lbl">Projects</div></div>
+        <div class="about-stat-card"><div class="val">99%</div><div class="lbl">Satisfaction</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-max">
+    <span class="section-label">What We Do</span>
+    <h2>Premium Services</h2>
+    <p class="section-sub">We deliver end-to-end digital solutions designed for maximum impact and ROI.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="svc-icon">🌐</div>
+        <div class="svc-title">Web Development</div>
+        <p class="svc-desc">Custom, responsive websites from corporate portals to highly interactive web applications built with modern frameworks.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">💬</div>
+        <div class="svc-title">WhatsApp API</div>
+        <p class="svc-desc">Automate support and sales with intelligent, integrated WhatsApp chatbot solutions for your business.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">📘</div>
+        <div class="svc-title">Meta Ads</div>
+        <p class="svc-desc">Data-driven Facebook & Instagram campaigns optimised for ultra-low CPC and high conversions.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🔍</div>
+        <div class="svc-title">Google Ads</div>
+        <p class="svc-desc">Targeted search and display network campaigns to capture high-intent leads instantly and efficiently.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">📱</div>
+        <div class="svc-title">Mobile App Development</div>
+        <p class="svc-desc">Cross-platform iOS & Android apps that deliver smooth, native-quality experiences for your users.</p>
+      </div>
+      <div class="service-card">
+        <div class="svc-icon">🏏</div>
+        <div class="svc-title">Cricket Analytics</div>
+        <p class="svc-desc">Specialised data dashboards and analytics platforms for cricket teams, leagues, and sports organisations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-max">
+    <span class="section-label">Our Work</span>
+    <h2>Featured Projects</h2>
+    <p class="section-sub">A glimpse into our portfolio of successful digital transformations.</p>
+    <div class="portfolio-grid">
+      <div class="project-card">
+        <div class="project-thumb p1">🏏</div>
+        <div class="project-body">
+          <div class="project-tag">Cricket Analytics</div>
+          <div class="project-title">CricMetrics Dashboard</div>
+          <p class="project-desc">A real-time cricket analytics platform with live score integration, player stats, and predictive insights.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb p2">🛒</div>
+        <div class="project-body">
+          <div class="project-tag">E-Commerce</div>
+          <div class="project-title">Sports Gear Store</div>
+          <p class="project-desc">Full-featured e-commerce platform with WhatsApp checkout integration and automated order tracking.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb p3">📊</div>
+        <div class="project-body">
+          <div class="project-tag">Web App</div>
+          <div class="project-title">League Management Portal</div>
+          <p class="project-desc">Complete tournament management system with team registration, scheduling, and live leaderboards.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-max">
+    <span class="section-label">Common Questions</span>
+    <h2>Frequently Asked</h2>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How soon can I see results from Ads? <span class="faq-arrow">+</span></div>
+        <div class="faq-a">Most clients start seeing measurable results within 7–14 days of campaign launch. We continuously optimise targeting, creatives, and bidding to improve performance over time.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How long does it take to build a website? <span class="faq-arrow">+</span></div>
+        <div class="faq-a">A standard website takes 2–4 weeks. Complex web applications or e-commerce platforms may take 6–10 weeks depending on features and integrations required.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What makes your designs premium? <span class="faq-arrow">+</span></div>
+        <div class="faq-a">Every design is custom-crafted with your brand identity in mind. We focus on speed, accessibility, conversion optimisation, and a visual standard that stands out from template-based competitors.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Do you offer post-launch support? <span class="faq-arrow">+</span></div>
+        <div class="faq-a">Yes! We offer flexible maintenance packages covering security updates, content changes, performance monitoring, and feature additions after your project goes live.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-max">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="section-label">Get In Touch</span>
+        <h2>Let's build the future.</h2>
+        <p>Reach out today for a consultation. We reply within 24 hours and would love to discuss your project vision.</p>
+        <div class="contact-links">
+          <a href="https://wa.me/919990177706" class="contact-link">
+            <span class="icon">💬</span>
+            <span>WhatsApp Us</span>
+          </a>
+          <a href="#" class="contact-link">
+            <span class="icon">✈️</span>
+            <span>Telegram</span>
+          </a>
+          <a href="#" class="contact-link">
+            <span class="icon">📸</span>
+            <span>Instagram</span>
+          </a>
+        </div>
+      </div>
+      <div class="form-card">
+        <h3 style="font-family:var(--font-head);font-weight:700;margin-bottom:1.5rem;">Submit a Request</h3>
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Enter your full name"/>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com"/>
+        </div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select>
+            <option>Web Development</option>
+            <option>WhatsApp API</option>
+            <option>Meta Ads</option>
+            <option>Google Ads</option>
+            <option>Mobile App</option>
+            <option>Cricket Analytics</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us about your project…"></textarea>
+        </div>
+        <button class="submit-btn">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-name">Crick Support <span>Agency</span></div>
+      <p>We engineer digital excellence. Transforming bold ideas into high-converting, state-of-the-art web experiences. Built for performance. Designed to convert.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#">📸</a>
+        <a class="social-btn" href="#">💬</a>
+        <a class="social-btn" href="#">✈️</a>
+        <a class="social-btn" href="#">🔗</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Web Development</a></li>
+        <li><a href="#services">WhatsApp API</a></li>
+        <li><a href="#services">Meta Ads</a></li>
+        <li><a href="#services">Google Ads</a></li>
+        <li><a href="#services">Cricket Analytics</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">Refund Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 <strong>Crick Support Agency</strong> — Engineered for success.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+      <a href="#">Refund</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    el.classList.toggle('open');
+  }
+  function toggleMenu() {
+    alert('Mobile menu: add your nav links here!');
+  }
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+  // Header hide on scroll
+  let lastY = 0;
+  window.addEventListener('scroll', () => {
+    const hdr = document.querySelector('header');
+    const y = window.scrollY;
+    hdr.style.transform = y > lastY && y > 80 ? 'translateY(-100%)' : 'translateY(0)';
+    lastY = y;
+  });
+</script>
+</body>
+</html>
